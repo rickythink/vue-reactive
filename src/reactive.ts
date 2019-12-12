@@ -1,11 +1,11 @@
 import { handlers } from './handler'
 
 /**
- * [observed, target]
+ * observed为key, target为value的WeakMap
  */
 const reactiveToRaw = new WeakMap<any, any>()
 /**
- * [target, observed]
+ * target为key, observed为value的WeakMap
  */
 const reactiveToProxy = new WeakMap<any, any>()
 
