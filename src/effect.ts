@@ -1,4 +1,4 @@
-interface ReactiveEffect<T = any> {
+export interface ReactiveEffect<T = any> {
   /**
    * effect 函数
    */
