@@ -50,6 +50,7 @@ const effectStack: ReactiveEffect[] = []
 export function effect(fn: () => any, options: ReactiveEffectOptions = {}) {
   const effect = createReactiveEffect(fn, options)
   if (!options.lazy) {
+    // 如果没有 lazy 选择就立即运行 effect()一次
     effect()
   }
   return effect
@@ -93,7 +94,7 @@ function run(effect: ReactiveEffect, fn: Function, args: unknown[]): unknown {
  * @param key 被依赖收集的对象key
  */
 export function track(target: object, key: string | symbol) {
-  // 获取最新入栈的 effect
+  // 获取最新入栈的 effect(如果没有设置effect, effectStack即为空)
   const effect = effectStack[effectStack.length - 1]
   if (effect) {
     let depsMap = targetMap.get(target)
